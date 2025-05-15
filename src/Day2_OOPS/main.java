@@ -1,4 +1,7 @@
-public class Main {
+package Day2_OOPS;
+
+import Day2_OOPS.SportsCar;
+public class main {
     public static void main(String[] args) {
         SportsCar myCar = new SportsCar("Ford", "Mustang");
 
