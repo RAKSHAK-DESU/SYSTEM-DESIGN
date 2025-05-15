@@ -1,0 +1,83 @@
+# System Design Notes
+
+## What is System Design?
+
+> The process of planning how different parts of a software or hardware system will work together to meet specific requirements.
+
+It involves **thinking and planning** how to build a big project step-by-step, by using small, manageable modules.
+
+---
+
+## What is LLD (Low-Level Design)?
+
+LLD = Component/function-level structure (or "skeleton") of an application, by identifying classes/objects, their relationships, data flow, etc.
+
+### Key Points:
+- **DSA** solves isolated problems using algorithms.
+- **LLD** determines *what* objects exist in the system and *how* they interact, then applies DSA inside that structure.
+
+---
+
+## Two Approaches to Build “Quick Edit”
+
+### 1. DSA
+- **Problem Decomposition**:
+  - Map city intersections → Nodes
+  - Roads → Edges
+- Examples:
+  - Dijkstra algo – compute shortest path
+  - Min-Heap – get min/max values
+
+### 2. LLD
+- **Problem Decomposition**:
+  - Entity identification (Object, Class, Interface, etc.)
+  - Establish relationships
+- Examples:
+  - Users → Posts (1:N)
+  - Inheritance
+  - Design patterns (Builder, Observer, Strategy, Factory)
+  - External systems (Email, SMS, Payment, Logging)
+
+---
+
+## THEN DSA: Use DSA within LLD structure
+
+---
+
+## Core LLD Principles & Focus Areas
+
+- **Scalability** – handle more users, data
+- **Modifiability** – adapt code easily
+- **Reusability** – component reuse
+- **Extensibility** – easy to add features
+- **Readability & Maintainability**
+- **Security**
+- **Fault-tolerance**
+- **Loosely coupled** – independent modules
+- **Plug & Play** – reuse modules with minimal change
+
+---
+
+## What LLD is NOT (vs HLD)?
+
+### HLD (High-Level Design):
+- Focuses on **system architecture**, not code structure.
+- Covers:
+  - Tech stack (frontend/backend)
+  - Databases (SQL/NoSQL/Hybrid)
+  - Scaling strategies
+  - Load balancers, autoscaling
+  - Cost optimization (AWS, GCP)
+  - Traffic, latency
+  - Fault tolerance, disaster recovery
+
+---
+
+## Summary Note
+
+| DSA         | + | LLD           | + | HLD              | => Application |
+|-------------|---|---------------|---|------------------|----------------|
+| Brain       |   | Skeleton      |   | Architecture     |                |
+| Algorithms  |   | Object model  |   | System structure |                |
+| Specific logic | | Plug DSA in  |   | Databases, stack |                |
+
