@@ -1,0 +1,54 @@
+# System Design Notes – Day 2: OOPS Pillars
+
+This repository contains concise notes and Java code examples to understand the 4 pillars of Object-Oriented Programming:
+
+- Abstraction
+- Encapsulation
+- Inheritance
+- Polymorphism
+
+## Java Examples
+Real-world `Car` and `SportsCar` classes are used to demonstrate these concepts.
+
+
+## 🔹 Abstraction
+- Hides unnecessary implementation details.
+- Exposes only what is necessary.
+- Eg: You operate a TV with a remote without knowing its internal circuitry.
+
+## 🔹 Encapsulation
+- Wrapping of data (variables) and methods in one unit (class).
+- Like a capsule—it hides internal complexity.
+
+```java
+class Car {
+    private String brand;
+    private String model;
+
+    public void start() { /* behavior */ }
+    public void stop() { /* behavior */ }
+}
+
+Access Modifiers:
+
+    private: Accessible only within the class.
+
+    public: Accessible from outside the class.
+
+    protected: Accessible within the class and its subclasses.
+
+    Inheritance
+
+        One class inherits fields and methods from another.
+
+        class SportsCar extends Car {
+            // Inherits start(), stop(), etc.
+        }
+
+     Polymorphism
+
+        Same method behaves differently depending on object/class.
+
+        Car myCar = new SportsCar(); // Dynamic dispatch
+        myCar.start(); // Calls SportsCar's overridden method
+

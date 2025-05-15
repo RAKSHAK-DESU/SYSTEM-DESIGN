@@ -1,0 +1,25 @@
+History of Programming:
+
+    Machine Language – Binary, error-prone, not scalable.
+
+    Assembly Language – Mnemonics like MOV A, 61H, still low-level.
+
+    Procedural – Loops, functions, eg. C Language.
+
+    OOP – Real-world modeling, scalable, reusable, secure.
+
+Objects vs Classes
+
+    Object = Real entity (Car)
+
+    Class = Blueprint (Car class)
+
+
+Example:
+    class Car {
+        String brand;
+        String model;
+
+        void start() {}
+        void stop() {}
+    }
