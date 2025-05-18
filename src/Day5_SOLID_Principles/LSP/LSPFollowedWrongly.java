@@ -1,17 +1,20 @@
-package Day5_SOLID_Principles.LSP.Followed;
+package Day5_SOLID_Principles.LSP;
 
+import java.util.ArrayList;
 import java.util.List;
 
-interface DepositOnlyAccount {
+// Account interface
+interface Account {
     void deposit(double amount);
-}
-
-interface WithdrawableAccount extends DepositOnlyAccount {
     void withdraw(double amount);
 }
 
-class SavingAccount implements WithdrawableAccount {
-    private double balance = 0;
+class SavingAccount implements Account {
+    private double balance;
+
+    public SavingAccount() {
+        balance = 0;
+    }
 
     @Override
     public void deposit(double amount) {
@@ -30,8 +33,12 @@ class SavingAccount implements WithdrawableAccount {
     }
 }
 
-class CurrentAccount implements WithdrawableAccount {
-    private double balance = 0;
+class CurrentAccount implements Account {
+    private double balance;
+
+    public CurrentAccount() {
+        balance = 0;
+    }
 
     @Override
     public void deposit(double amount) {
@@ -50,48 +57,58 @@ class CurrentAccount implements WithdrawableAccount {
     }
 }
 
-class FixedTermAccount implements DepositOnlyAccount {
-    private double balance = 0;
+class FixedTermAccount implements Account {
+    private double balance;
+
+    public FixedTermAccount() {
+        balance = 0;
+    }
 
     @Override
     public void deposit(double amount) {
         balance += amount;
         System.out.println("Deposited: " + amount + " in Fixed Term Account. New Balance: " + balance);
     }
+
+    @Override
+    public void withdraw(double amount) {
+        throw new UnsupportedOperationException("Withdrawal not allowed in Fixed Term Account!");
+    }
 }
 
 class BankClient {
-    private List<WithdrawableAccount> withdrawableAccounts;
-    private List<DepositOnlyAccount> depositOnlyAccounts;
+    private List<Account> accounts;
 
-    public BankClient(List<WithdrawableAccount> withdrawableAccounts, List<DepositOnlyAccount> depositOnlyAccounts) {
-        this.withdrawableAccounts = withdrawableAccounts;
-        this.depositOnlyAccounts = depositOnlyAccounts;
+    public BankClient(List<Account> accounts) {
+        this.accounts = accounts;
     }
 
     public void processTransactions() {
-        for (WithdrawableAccount acc : withdrawableAccounts) {
+        for (Account acc : accounts) {
             acc.deposit(1000);
-            acc.withdraw(500);
-        }
-        for (DepositOnlyAccount acc : depositOnlyAccounts) {
-            acc.deposit(5000);
+
+            // Checking account type explicitly
+            if (acc instanceof FixedTermAccount) {
+                System.out.println("Skipping withdrawal for Fixed Term Account.");
+            } else {
+                try {
+                    acc.withdraw(500);
+                } catch (UnsupportedOperationException e) {
+                    System.out.println("Exception: " + e.getMessage());
+                }
+            }
         }
     }
 }
 
-class Main {
+public class LSPFollowedWrongly {
     public static void main(String[] args) {
-        List<WithdrawableAccount> withdrawableAccounts = List.of(
-                new SavingAccount(),
-                new CurrentAccount()
-        );
+        List<Account> accounts = new ArrayList<>();
+        accounts.add(new SavingAccount());
+        accounts.add(new CurrentAccount());
+        accounts.add(new FixedTermAccount());
 
-        List<DepositOnlyAccount> depositOnlyAccounts = List.of(
-                new FixedTermAccount()
-        );
-
-        BankClient client = new BankClient(withdrawableAccounts, depositOnlyAccounts);
+        BankClient client = new BankClient(accounts);
         client.processTransactions();
     }
 }
